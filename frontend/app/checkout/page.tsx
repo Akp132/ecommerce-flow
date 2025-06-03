@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 type Product = {
   id: number;
@@ -10,7 +10,7 @@ type Product = {
   price: number;
 };
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pid = Number(searchParams.get("pid"));
@@ -91,7 +91,7 @@ export default function CheckoutPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input placeholder="Full Name" onChange={(e) => setForm({ ...form, name: e.target.value })} className="border p-2 rounded" />
-          <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} className="border p-2 rounded" />
+          <input placeholder="Email" type="email" onChange={(e) => setForm({ ...form, email: e.target.value })} className="border p-2 rounded" />
           <input placeholder="Phone" onChange={(e) => setForm({ ...form, phone: e.target.value })} className="border p-2 rounded" />
           <input placeholder="Address" onChange={(e) => setForm({ ...form, address: e.target.value })} className="border p-2 rounded" />
           <input placeholder="City" onChange={(e) => setForm({ ...form, city: e.target.value })} className="border p-2 rounded" />
@@ -101,9 +101,9 @@ export default function CheckoutPage() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">Payment</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <input placeholder="Card number" onChange={(e) => setForm({ ...form, cardNumber: e.target.value })} className="border p-2 rounded" />
+          <input placeholder="Card number" maxLength={16} onChange={(e) => setForm({ ...form, cardNumber: e.target.value })} className="border p-2 rounded" />
           <input placeholder="Expiry MM/YY" onChange={(e) => setForm({ ...form, expiry: e.target.value })} className="border p-2 rounded" />
-          <input placeholder="CVV" onChange={(e) => setForm({ ...form, cvv: e.target.value })} className="border p-2 rounded" />
+          <input placeholder="CVV" maxLength={3} onChange={(e) => setForm({ ...form, cvv: e.target.value })} className="border p-2 rounded" />
         </div>
 
         <div className="mt-6 border-t pt-4">
@@ -121,5 +121,14 @@ export default function CheckoutPage() {
         </button>
       </div>
     </div>
+  );
+}
+
+// ✅ Wrap the component in Suspense boundary
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
