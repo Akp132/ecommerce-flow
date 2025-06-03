@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 type Order = {
@@ -14,7 +14,7 @@ type Order = {
   total: number;
 };
 
-export default function SuccessPage() {
+function SuccessContent() {
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -53,7 +53,9 @@ export default function SuccessPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-green-600 mb-4">Order Successful!</h1>
-      <p className="text-lg text-gray-700">Thank you for your purchase, <strong>{order.email}</strong></p>
+      <p className="text-lg text-gray-700">
+        Thank you for your purchase, <strong>{order.email}</strong>
+      </p>
       <p className="text-md text-gray-500 mb-6">Order Number: {order.orderNumber}</p>
 
       <div className="bg-white shadow-md rounded p-6">
@@ -75,5 +77,13 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-10">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }
