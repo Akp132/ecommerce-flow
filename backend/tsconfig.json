@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                      // ✅ Modern JS features
+    "module": "commonjs",                    // ✅ Required for Express + Node.js
+    "rootDir": ".",                          // ✅ Allows `src/` and `prisma/` to coexist
+    "outDir": "dist",                        // ✅ Output folder for compiled JS
+    "strict": true,                          // ✅ Strong type checking
+    "esModuleInterop": true,                 // ✅ Enables `import x from 'x'` for CommonJS modules
+    "resolveJsonModule": true,               // ✅ Supports importing `.json`
+    "skipLibCheck": true,                    // ✅ Speeds up build by skipping `.d.ts` checks
+    "forceConsistentCasingInFileNames": true // ✅ Avoids case issues between macOS/Linux
+  },
+  "include": ["src", "prisma"],              // ✅ Only include your backend source & seed scripts
+  "exclude": ["node_modules", "dist"]        // ✅ Prevent output/dep pollution
+}
