@@ -93,6 +93,11 @@ Submit ➝ Redirected to /thankyou?order=XXXX
 
 View confirmation and order summary
 
+
+
+
+
+
 👨‍💻 Author
 Akshay P.
 Fullstack Developer | AI + Web Dev Enthusiast
