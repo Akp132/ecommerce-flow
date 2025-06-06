@@ -19,7 +19,7 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/products`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`)
       .then((res) => res.json())
       .then((data: Product[]) => {
         const found = data.find((p) => p.id === Number(id));

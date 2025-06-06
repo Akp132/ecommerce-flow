@@ -31,7 +31,7 @@ function CheckoutContent() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.find((p: Product) => p.id === pid);
@@ -42,7 +42,7 @@ function CheckoutContent() {
   const handleSubmit = async () => {
     if (!product) return;
 
-    const res = await fetch("http://localhost:4000/api/checkout", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/checkout`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

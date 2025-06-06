@@ -12,7 +12,7 @@ export default function OrderSuccessClient() {
   useEffect(() => {
     if (!orderNumber) return;
     axios
-      .get(`http://localhost:4000/api/order/${orderNumber}`)
+      .get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/order/${orderNumber}`)
       .then((res) => setOrder(res.data))
       .catch((err) => console.error("Failed to fetch order", err));
   }, [orderNumber]);

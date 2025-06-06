@@ -10,7 +10,7 @@ export default function OrderConfirmationPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/order/${orderNumber}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/order/${orderNumber}`)
       .then((res) => {
         if (!res.ok) throw new Error("Order not found");
         return res.json();
