@@ -1,5 +1,8 @@
 # 🛒 eCommerce Flow – Fullstack Web App
 
+Access the deployment at - https://ecommerce-flow.vercel.app
+
+
 An end-to-end eCommerce demo application built with **Next.js (App Router)** on the frontend and **Express.js** on the backend. This project demonstrates a full purchase flow from product listing ➝ checkout ➝ order confirmation, including dynamic routing, API integration, and live deployment.
 
 ## 🚀 Features
