@@ -15,7 +15,7 @@ export default function CatalogPage() {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch("${process.env.NEXT_PUBLIC_API_BASE_URL}/api/products")
       .then((res) => res.json())
       .then(setProducts);
   }, []);
